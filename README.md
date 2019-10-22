@@ -38,6 +38,23 @@ Options:
                                                                        [boolean]
   --debug              Print debugging information during run          [boolean]
   --help               Show help                                       [boolean]
+
+
+## Examples:
+
+❯ ./logrip yesterday -f date -p ./logs
+{"date":"2019-10-22T08:58:13.123Z","foo":"bar"}
+{"date":"2019-10-22T08:58:14.123Z","foo":"baz"}
+{"date":"2019-10-22T08:58:15.123Z","foo":"qux"}
+{"date":"2019-10-22T08:58:15.123Z","foo":"qqux"}
+{"date":"2019-10-22T08:58:15.123Z","foo":"qqqux"}
+
+❯ ./logrip yesterday -f date -m qqq -p ./logs
+{"date":"2019-10-22T08:58:15.123Z","foo":"qqqux"}
+
+❯ ./logrip yesterday -f date -v q -p ./logs
+{"date":"2019-10-22T08:58:13.123Z","foo":"bar"}
+{"date":"2019-10-22T08:58:14Z","foo":"baz"}
 ```
 
 ## License
