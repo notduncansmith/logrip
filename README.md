@@ -2,6 +2,10 @@
 
 Search JSONL files ("logs") by time and content
 
+```sh
+yarn global add logrip
+```
+
 ## About
 
 Logrip is a tool designed to facilitate rapid root-cause analysis, debugging, and monitoring. It searches or tails structured log files for time-and-content-relevant log lines, and can transform these log lines before outputting them.
@@ -54,7 +58,7 @@ Options:
 
 ❯ ./logrip yesterday -f date -v q -p ./logs
 {"date":"2019-10-22T08:58:13.123Z","foo":"bar"}
-{"date":"2019-10-22T08:58:14Z","foo":"baz"}
+{"date":"2019-10-22T08:58:14.123Z","foo":"baz"}
 ```
 
 ## License
