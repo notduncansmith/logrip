@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+const query = require('./query')
+
+const cmd = require('yargs')
+.command('$0 <start> [end]', 'Search JSONL files ("logs") by time and content', (yargs) => {
+    yargs.positional('start', {
+        describe: 'Datetime to start from. Can be natural language (e.g. "yesterday at 5pm") or an ISO-8601 string',
+        type: 'string',
+        default: '5 minutes ago',
+    })
+    .positional('end', {
+        describe: 'Datetime to end at. Can be natural language (e.g. "yesterday at 5pm") or an ISO-8601 string',
+        type: 'string',
+        default: 'now',
+    })
+}, (argv) => query(cmd, argv, console.log))
+.option('path', {
+    alias: 'p',
+    string: true,
+    default: '.',
+    describe: 'The path to the log files',
+})
+.option('field', {
+    alias: 'f',
+    string: true,
+    default: '.timestamp',
+    describe: 'The `jq` field expression for log timestamps',
+})
+.option('tail', {
+    alias: 't',
+    boolean: true,
+    default: false,
+    describe: 'Tail the latest matched log file and continue reporting query results'
+})
+.option('limit', {
+    alias: 'l',
+    number: true,
+    default: 1000,
+    describe: 'Limit the number of lines that should be returned by the query (does not limit continuous output from --tail)'
+})
+.option('match', {
+    alias: 'm',
+    string: true,
+    describe: 'A regex pattern to filter incoming lines',
+    requiresArg: true,
+})
+.option('inverse-match', {
+    alias: 'v',
+    string: true,
+    describe: 'A regex pattern to inverse-filter incoming lines',
+    requiresArg: true,
+})
+.option('select', {
+    alias: 's',
+    string: true,
+    describe: 'A boolean `jq` expression to filter incoming lines',
+})
+.option('jq', {
+    alias: 'q',
+    string: true,
+    describe: 'A `jq` expression to transform incoming lines',
+    requiresArg: true,
+})
+.option('raw', {
+    alias: 'r',
+    boolean: true,
+    describe: 'A flag indicating whether `jq` should use `--raw-input`',
+})
+.option('debug', {
+    boolean: true,
+    describe: 'Print debugging information during run',
+})
+.help()
+
+const args = cmd.argv

@@ -1,0 +1,15 @@
+{
+  "name": "logrip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@rauschma/stringio": "^1.4.0",
+    "chrono-node": "^1.3.11",
+    "fx": "^14.0.1",
+    "highland": "^2.13.5",
+    "node-jq": "^1.10.3",
+    "tail": "^2.0.3",
+    "yargs": "^14.2.0"
+  }
+}
